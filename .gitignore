@@ -1,2 +1,4 @@
-autoencoder/__pycache__
-*.wav__pycache__/
+__pycache__/
+*.pyc
+*.wav
+.venv/
