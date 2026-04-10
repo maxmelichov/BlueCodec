@@ -40,16 +40,16 @@ You can simply provide the path to any directory containing your audio files. Th
 The Autoencoder learns to compress audio into a low-dimensional latent space.
 
 ```bash
-python train_autoencoder.py
+uv run train_autoencoder.py
 ```
 
 - **Output:** Checkpoints are saved to `checkpoints/ae/`.
 - **Options:**
   - `--resume path/to/ckpt.pt`: Resume training from a specific checkpoint.
   - `--eval_input path/to/audio.wav`: Run reconstruction evaluation on a specific file during training.
-  - **Distributed Training:** For faster training on multiple GPUs, use `torchrun`:
+  - **Distributed Training:** For faster training on multiple GPUs, use `torchrun` via `uv run`:
     ```bash
-    torchrun --nproc_per_node=2 train_autoencoder.py --resume checkpoints/ae/ae_latest.pt
+    uv run torchrun --nproc_per_node=2 train_autoencoder.py --resume checkpoints/ae/ae_latest.pt
     ```
 
 ---

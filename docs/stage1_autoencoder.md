@@ -258,12 +258,54 @@ Checkpoint contents:
 
 ---
 
+## 🚀 Running the Autoencoder (AE)
+
+The Autoencoder learns to compress audio into a low-dimensional latent space.
+
+### Initial training
+
+```bash
+uv run train_autoencoder.py
+```
+
+### Resume from checkpoint
+
+```bash
+uv run train_autoencoder.py --resume checkpoints/ae/ae_latest.pt
+```
+
+### Finetune (reset optimizer + step counter)
+
+```bash
+uv run train_autoencoder.py \
+    --resume checkpoints/ae/ae_latest.pt \
+    --finetune \
+    --lr 1e-5
+```
+
+### Distributed training
+
+```bash
+uv run torchrun --nproc_per_node=2 train_autoencoder.py \
+    --resume checkpoints/ae/ae_55000.pt \
+    --eval_input AE_training_data/generated_audio4_slow/utt_000004.wav \
+    --finetune
+```
+
+### With reconstruction evaluation sample
+
+```bash
+uv run train_autoencoder.py --eval_input path/to/sample.wav
+```
+
+---
+
 ## Next Step
 
 After Stage 1 completes (or at any checkpoint), run:
 
 ```bash
-python compute_latent_stats.py --tts-json config/tts.json
+uv run compute_latent_stats.py --tts-json config/tts.json
 # → outputs: stats_real_data.pt
 ```
 
