@@ -60,4 +60,5 @@ python train_autoencoder.py
 The current model was trained with the following specifications:
 - **Hardware:** 2× NVIDIA RTX 3090 GPUs
 - **Duration:** 4 weeks
+- **Steps:** 1.5 million steps
 - **Dataset:** 6 million files across different languages (~11,000 hours of audio)
